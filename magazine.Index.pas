@@ -1,4 +1,4 @@
-unit magazineIndex;
+unit magazine.Index;
 
 interface
 

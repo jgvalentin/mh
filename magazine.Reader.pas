@@ -1,4 +1,4 @@
-unit magazineReader;
+unit magazine.Reader;
 
 interface
 

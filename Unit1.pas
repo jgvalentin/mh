@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, JPEG, IdHTTP, ShellAPI,
   IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdIOHandler, inifiles, System.Generics.Collections,
-  IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL, Vcl.NumberBox, magazineReader, magazineIndex,
+  IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL, Vcl.NumberBox, magazine.Reader, magazine.Index,
   Data.DbxSqlite, Data.DB, Vcl.Mask, Vcl.DBCtrls, Datasnap.DBClient, SimpleDS,
   printers,
   Data.SqlExpr, Vcl.Menus, System.Actions, Vcl.ActnList;
@@ -210,6 +210,7 @@ begin
     exit;
 
   numero := strtoint(_number);
+
 end;
 
 procedure TForm1.selectMagazine(numero: integer);
@@ -672,7 +673,8 @@ var
   numMagazine: integer;
 begin
   pnIndex.Visible := itViewIndex.Checked;
-  mi.prepaint;
+  if pnIndex.Visible then
+    mi.prepaint;
 end;
 
 procedure TForm1.setNumero(const Value: integer);
@@ -683,6 +685,8 @@ begin
   pagina := 1;
   Cargar;
   mg.prepaint;
+
+  mi.index := numero;
 
 end;
 

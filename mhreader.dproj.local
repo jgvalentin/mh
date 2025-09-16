@@ -3,13 +3,15 @@
 	<Transactions>
     <Transaction>2025/05/15 11:57:38.000.971,=C:\Users\jesus\OneDrive - TYPSA\Unit1.pas</Transaction>
     <Transaction>2025/05/15 11:58:08.000.158,=C:\Users\jesus\OneDrive - TYPSA\Unit1.pas</Transaction>
-    <Transaction>2025/05/15 12:03:10.000.075,C:\Users\jesus\OneDrive - TYPSA\mh\Unit1.dfm=C:\Users\jesus\OneDrive - TYPSA\Unit1.dfm</Transaction>
-    <Transaction>2025/05/15 12:03:10.000.075,C:\Users\jesus\OneDrive - TYPSA\mh\Unit1.pas=C:\Users\jesus\OneDrive - TYPSA\Unit1.pas</Transaction>
-    <Transaction>2025/05/15 12:03:12.000.654,C:\Users\jesus\OneDrive - TYPSA\mh\Project1.dproj=C:\Users\jesus\OneDrive - TYPSA\Project1.dproj</Transaction>
-    <Transaction>2025/05/16 00:05:13.000.675,C:\Users\jesus\OneDrive - TYPSA\mh\mhreader.dproj=C:\Users\jesus\OneDrive - TYPSA\mh\Project1.dproj</Transaction>
+    <Transaction>2025/05/15 12:03:10.000.075,C:\Users\jesus\OneDrive - TYPSA\Unit1.dfm=C:\Users\jesus\OneDrive - TYPSA\mh\Unit1.dfm</Transaction>
+    <Transaction>2025/05/15 12:03:10.000.075,C:\Users\jesus\OneDrive - TYPSA\Unit1.pas=C:\Users\jesus\OneDrive - TYPSA\mh\Unit1.pas</Transaction>
+    <Transaction>2025/05/15 12:03:12.000.654,C:\Users\jesus\OneDrive - TYPSA\Project1.dproj=C:\Users\jesus\OneDrive - TYPSA\mh\Project1.dproj</Transaction>
+    <Transaction>2025/05/16 00:05:13.000.675,C:\Users\jesus\OneDrive - TYPSA\mh\Project1.dproj=C:\Users\jesus\OneDrive - TYPSA\mh\mhreader.dproj</Transaction>
     <Transaction>2025/05/20 11:06:39.000.305,=C:\Users\jesus\OneDrive - TYPSA\mh\Unit2.pas</Transaction>
-    <Transaction>2025/05/20 11:08:29.000.372,C:\Users\jesus\OneDrive - TYPSA\mh\Unit2.pas=C:\Users\jesus\OneDrive - TYPSA\mh\magacinereader.pas</Transaction>
-    <Transaction>2025/05/21 01:04:52.000.382,C:\Users\jesus\OneDrive - TYPSA\mh\magacinereader.pas=C:\Users\jesus\OneDrive - TYPSA\mh\magazineReader.pas</Transaction>
-    <Transaction>2025/09/15 03:52:33.163,=C:\Users\jesus\OneDrive - TYPSA\mh\magazineIndex.pas</Transaction>
+    <Transaction>2025/05/20 11:08:29.000.372,C:\Users\jesus\OneDrive - TYPSA\mh\magacinereader.pas=C:\Users\jesus\OneDrive - TYPSA\mh\Unit2.pas</Transaction>
+    <Transaction>2025/05/21 01:04:52.000.382,C:\Users\jesus\OneDrive - TYPSA\mh\magazineReader.pas=C:\Users\jesus\OneDrive - TYPSA\mh\magacinereader.pas</Transaction>
+    <Transaction>2025/09/15 03:52:33.000.163,=C:\Users\jesus\OneDrive - TYPSA\mh\magazineIndex.pas</Transaction>
+    <Transaction>2025/09/15 23:50:57.878,C:\Users\jesus\OneDrive - TYPSA\mh\magazine.Index.pas=C:\Users\jesus\OneDrive - TYPSA\mh\magazineIndex.pas</Transaction>
+    <Transaction>2025/09/15 23:51:05.833,C:\Users\jesus\OneDrive - TYPSA\mh\magazine.Reader.pas=C:\Users\jesus\OneDrive - TYPSA\mh\magazineReader.pas</Transaction>
   </Transactions>
 </BorlandProject>

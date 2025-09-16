@@ -106,8 +106,8 @@
             <Form>Form1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="magazineReader.pas"/>
-        <DCCReference Include="magazineIndex.pas"/>
+        <DCCReference Include="magazine.Reader.pas"/>
+        <DCCReference Include="magazine.Index.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
