@@ -16,15 +16,6 @@ object Form1: TForm1
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   TextHeight = 15
-  object Splitter1: TSplitter
-    Left = 550
-    Top = 0
-    Width = 9
-    Height = 466
-    Align = alRight
-    ExplicitLeft = 874
-    ExplicitHeight = 491
-  end
   object Panel1: TPanel
     Left = 0
     Top = 466
@@ -44,15 +35,16 @@ object Form1: TForm1
       OnChange = edTypeMagazineChange
     end
   end
-  object pnIndex: TPanel
-    Left = 559
+  object pnIndex: TSplitView
+    Left = 544
     Top = 0
-    Width = 185
+    Width = 200
     Height = 466
-    Align = alRight
+    OpenedWidth = 200
+    Placement = svpRight
     TabOrder = 1
     Visible = False
-    ExplicitLeft = 553
+    ExplicitLeft = 538
     ExplicitHeight = 457
   end
   object http: TIdHTTP

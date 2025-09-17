@@ -4,9 +4,6 @@ Coordinates=259,100,93,36
 [N5]
 Coordinates=14,143,40,36
 
-[Splitter1]
-Coordinates=75,144,62,36
-
 [aExit]
 Coordinates=259,210,43,36
 
@@ -136,9 +133,6 @@ Coordinates=705,386,46,36
 [aGoWOS]
 Coordinates=705,441,69,36
 
-[pnIndex]
-Coordinates=250,10,60,58
-
 [SimpleDataSet1]
 Coordinates=133,10,107,80
 
@@ -185,5 +179,5 @@ Coordinates=855,221,135,36
 Coordinates=35,535,88,36
 
 []
-Coordinates=1103,1,91,36
+Coordinates=250,10,60,58
 

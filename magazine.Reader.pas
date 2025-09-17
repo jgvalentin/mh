@@ -61,7 +61,7 @@ type
     procedure pageLeft(pag: string);
     procedure ZoomIn;
     procedure ZoomOut;
-    constructor create(AOwner: TComponent); override;
+    constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     property numero: integer read fnumero write setNumero;
     property zoom: extended read fzoom write setZoom;
@@ -83,7 +83,7 @@ begin
   end;
 end;
 
-constructor TmagazineReader.create(AOwner: TComponent);
+constructor TmagazineReader.Create(AOwner: TComponent);
 begin
   inherited;
   parent := TWinCOntrol(AOwner);
@@ -193,17 +193,23 @@ begin
 end;
 
 function TmagazineReader.DoMouseWheelDown(Shift: TShiftState; MousePos: Tpoint): boolean;
+var p:Tpoint;
 begin
-  inherited;
+  result  := inherited;
+    p := ScreenToClient(point(mousePos.X,mousePos.Y));
   fzoom := fzoom * 1.1;
-  zoom_dx := MousePos.x;
-  zoom_dy := MousePos.y;
+
+  zoom_dx := p.x;
+
+  zoom_dy := p.y;
   prepaint;
 end;
 
 function TmagazineReader.DoMouseWheelUp(Shift: TShiftState; MousePos: Tpoint): boolean;
+var p:Tpoint;
 begin
-  inherited;
+  result := inherited;
+    p := ScreenToClient(point(mousePos.X,mousePos.Y));
   fzoom := fzoom / 1.1;
   zoom_dx := MousePos.x;
   zoom_dy := MousePos.y;

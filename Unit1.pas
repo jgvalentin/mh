@@ -9,7 +9,7 @@ uses
   IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL, Vcl.NumberBox, magazine.Reader, magazine.Index,
   Data.DbxSqlite, Data.DB, Vcl.Mask, Vcl.DBCtrls, Datasnap.DBClient, SimpleDS,
   printers,
-  Data.SqlExpr, Vcl.Menus, System.Actions, Vcl.ActnList;
+  Data.SqlExpr, Vcl.Menus, System.Actions, Vcl.ActnList, Vcl.WinXCtrls;
 
 const
   MZ_MICROHOBBY = 0;
@@ -27,8 +27,6 @@ type
     IdSSLIOHandlerSocketOpenSSL1: TIdSSLIOHandlerSocketOpenSSL;
     Panel1: TPanel;
     edTypeMagazine: TComboBox;
-    Splitter1: TSplitter;
-    pnIndex: TPanel;
     SQLConnection1: TSQLConnection;
     SimpleDataSet1: TSimpleDataSet;
     SimpleDataSet1nuev: TStringField;
@@ -84,6 +82,7 @@ type
     MaximizeNormal1: TMenuItem;
     itViewIndex: TMenuItem;
     Index2: TMenuItem;
+    pnIndex: TSplitView;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Image10Click(Sender: TObject);
@@ -128,7 +127,7 @@ type
     function loadPageMagazine(numeroMagazine, numPagina: integer): string;
     function getURLMagazine(numMagazine, numPage: integer): string;
     procedure selectMagazine(numero: integer);
-    procedure loadIndexMagazine(index: integer; var filename: string; var eof: Boolean);
+    procedure loadIndexMagazine(Index: integer; var filename: string; var eof: Boolean);
   public
     pagina: integer;
     mainIni: Tinifile;
@@ -210,6 +209,7 @@ begin
     exit;
 
   numero := strtoint(_number);
+  mi.Index := numero;
 
 end;
 
@@ -218,7 +218,7 @@ begin
   self.numero := numero;
 end;
 
-procedure TForm1.loadIndexMagazine(index: integer; var filename: string; var eof: Boolean);
+procedure TForm1.loadIndexMagazine(Index: integer; var filename: string; var eof: Boolean);
 begin
   filename := loadPageMagazine(index, 1);
 end;
@@ -411,10 +411,10 @@ var
   linkStr: string;
   link: TLink;
 
-  function getFechaDefault(index: integer): TdateTime;
+  function getFechaDefault(Index: integer): TdateTime;
   begin
     try
-
+      result := 0;
       case index of
         MZ_MICROHOBBY:
           begin
@@ -456,9 +456,13 @@ var
     cursoStr: string;
   begin
     edad := trunc((fechPublicacion - encodedate(1970, 1, 1)) / 365);
+
+
     decodeDate(fechPublicacion, y, mes, d);
 
     try
+
+
 
       if mes < 7 then
         cursoStr := CURSO[edad - 1]
@@ -466,6 +470,7 @@ var
         cursoStr := CURSO[edad - 1] + ' verano ' + CURSO[edad]
       else
         cursoStr := CURSO[edad];
+
 
     except
       cursoStr := '';
@@ -668,13 +673,19 @@ begin
 end;
 
 procedure TForm1.itViewIndexClick(Sender: TObject);
-var
-  JPEG: TJPEGImage;
-  numMagazine: integer;
 begin
   pnIndex.Visible := itViewIndex.Checked;
-  if pnIndex.Visible then
+
+  if itViewIndex.Checked then
+  begin
+    pnIndex.show;
     mi.prepaint;
+  end
+  else
+  begin
+    pnIndex.hide;
+  end;
+
 end;
 
 procedure TForm1.setNumero(const Value: integer);
@@ -686,7 +697,7 @@ begin
   Cargar;
   mg.prepaint;
 
-  mi.index := numero;
+//  mi.Index := numero;
 
 end;
 

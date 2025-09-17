@@ -2,11 +2,13 @@ unit magazine.Index;
 
 interface
 
-uses JPEG, System.StrUtils, Generics.Collections, Graphics, vcl.ExtCtrls, Classes, vcl.Controls, SysUtils, forms, System.Types, vcl.StdCtrls;
+uses JPEG, System.StrUtils, Generics.Collections, Graphics, vcl.ExtCtrls, Classes,
+Math,
+vcl.Controls, SysUtils, forms, System.Types, vcl.StdCtrls;
 
 type
   TonSelectMagazine = procedure(numero: integer) of object;
-  TonLoadIndexMagazine = procedure(index: integer; var filename: string; var eof: boolean) of object;
+  TonLoadIndexMagazine = procedure(Index: integer; var filename: string; var eof: boolean) of object;
 
   TmagazineIndex = class(TcustomPanel)
 
@@ -16,7 +18,11 @@ type
     dragY, offsetY: integer;
     JPEG: TJPEGImage;
     bitmap: Tbitmap;
-
+    //Altura por pagina
+    pageHeight:integer;
+    //Numero maximo de paginas que soporta
+    numMaxPages:integer;
+    //Numero de la primera revita
     findex: integer;
     procedure setIndex(const Value: integer);
   public
@@ -34,7 +40,7 @@ type
 
     procedure prepaint;
     procedure clear;
-    constructor create(AOwner: TComponent); override;
+    constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
 
     property index: integer read findex write setIndex;
@@ -49,7 +55,7 @@ begin
 
 end;
 
-constructor TmagazineIndex.create(AOwner: TComponent);
+constructor TmagazineIndex.Create(AOwner: TComponent);
 begin
   inherited;
   parent := TWinCOntrol(AOwner);
@@ -63,14 +69,15 @@ end;
 procedure TmagazineIndex.MouseDown(Button: TMouseButton; Shift: TShiftState; x, y: integer);
 begin
   click := true;
-  dragY := y;
+  dragY := y-offsetY;
 end;
 
 procedure TmagazineIndex.MouseMove(Shift: TShiftState; x, y: integer);
+
 begin
   if click then
   begin
-    offsetY := y - dragY;
+    offsetY := (y - dragY);
     Paint;
     dragState := true;
   end;
@@ -84,8 +91,15 @@ begin
   begin
     if dragState then
     begin
-      findex := findex - round(offsetY / (width * 1.41));
-      offsetY := 0;
+      findex := findex - trunc(offsetY / pageHeight);
+
+      if offsetY>0 then   //Se ha bajado
+      begin
+      findex := findex-1;
+         offsetY:=-(pageHeight-offsetY)
+      end
+         else
+      offsetY := offsetY mod pageHeight;
       prepaint;
       dragState := false;
 
@@ -95,8 +109,8 @@ begin
 
       if assigned(onSelectMagazine) then
       begin
-        index := trunc(y / (width * 1.43)) + index;
-        onSelectMagazine(index);
+//        index := trunc((y+offsetY)/ pageHeight) + index;
+        onSelectMagazine(trunc((y-offsetY)/ pageHeight) + index);
       end;
     end;
   end;
@@ -129,7 +143,7 @@ end;
 procedure TmagazineIndex.prepaint;
 var
 
-  posicionY, _index: integer;
+  posicionY: integer;
   filename: string;
   eof: boolean;
 begin
@@ -138,15 +152,11 @@ begin
     exit;
 
   posicionY := 0;
-  while ((round(posicionY * width * 1.41) - offsetY) < bitmap.height) do
+  while ((round(posicionY * pageHeight)+offsetY ) < bitmap.height) do
   begin
-
     onLoadIndexMagazine(index + posicionY, filename, eof);
-
     JPEG.loadfromfile(filename);
-
-    bitmap.Canvas.StretchDraw(rect(0, round(posicionY * width * 1.41) + offsetY, width, round((posicionY + 1) * width * 1.41) + offsetY), JPEG);
-
+    bitmap.Canvas.StretchDraw(rect(0, round(posicionY * pageHeight) , width, round((posicionY + 1) * pageHeight) ), JPEG);
     inc(posicionY);
   end;
 
@@ -158,13 +168,19 @@ begin
   inherited;
 
   Canvas.Draw(0, offsetY, bitmap);
+  canvas.Brush.Style := bsClear;
+  canvas.Rectangle(0,offsetY,width,bitmap.Height+offsetY);
 
 end;
 
 procedure TmagazineIndex.Resize;
 begin
   inherited;
-  bitmap.SetSize(width, height*2);
+  pageHeight := round(width * 1.41);
+  numMaxPages :=ceil(height/pageHeight);
+
+  bitmap.SetSize(width, (numMaxPages+1)*pageHeight);
+
   prepaint;
 end;
 
